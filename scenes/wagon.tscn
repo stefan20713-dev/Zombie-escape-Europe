@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/wagon.gd" id="1_wagon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chassis"]
+size = Vector2(184, 58)
+
+[node name="Wagon" type="RigidBody2D"]
+mass = 420.0
+gravity_scale = 0.88
+linear_damp = 0.035
+angular_damp = 1.35
+can_sleep = false
+script = ExtResource("1_wagon")
+
+[node name="ChassisShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_chassis")
+
+[node name="FrontSpring" type="RayCast2D" parent="."]
+position = Vector2(51, 0)
+target_position = Vector2(0, 70)
+collision_mask = 1
+enabled = true
+
+[node name="RearSpring" type="RayCast2D" parent="."]
+position = Vector2(-51, 0)
+target_position = Vector2(0, 70)
+collision_mask = 1
+enabled = true

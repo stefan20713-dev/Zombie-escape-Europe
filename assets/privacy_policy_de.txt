@@ -1,0 +1,11 @@
+DATENSCHUTZHINWEIS · ZOMBIE ESCAPE EUROPE
+
+Das Spiel erstellt kein Nutzerkonto und betreibt keinen eigenen Spielserver. Spielstand, Funkaufzeichnungen, Käufe und Ton- sowie Vibrationsoptionen werden lokal im privaten App-Speicher gespeichert. Sie können in den Android-App-Einstellungen gelöscht oder durch Deinstallation entfernt werden.
+
+Die Android-Version enthält Google Mobile Ads und die Google User Messaging Platform. Auf Android können vor einer Anzeigenanfrage Einwilligungsinformationen geprüft und gegebenenfalls eine Datenschutzauswahl angezeigt werden. Das Spiel kann ein freiwilliges Belohnungsvideo für 500 Münzen und seltene Vollbildanzeigen nach abgeschlossenen Fehlversuchen anbieten. Wenn die Einwilligungsprüfung fehlschlägt oder keine Anzeige verfügbar ist, läuft das Spiel ohne Anzeige weiter.
+
+Google Mobile Ads kann abhängig von Einwilligung, Region und Konfiguration technische Geräte- und Anzeigenkennungen, IP-Adresse, Interaktionen mit Anzeigen und Diagnosedaten für Auslieferung, Messung und Betrugsprävention verarbeiten und mit Google-Diensten teilen. Details und die jeweils aktuellen Angaben stehen in Googles [Informationen zur Datenerhebung des Mobile Ads SDK](https://developers.google.com/admob/android/privacy/play-data-disclosure) und in der [Google-Datenschutzerklärung](https://policies.google.com/privacy).
+
+Diese Entwicklungsfassung verwendet ausschließlich Googles offizielle Test-Anzeigenkennungen; sie zeigt keine bezahlten Live-Anzeigen. Live-Anzeigen bleiben für Release-Builds deaktiviert, bis Anbieterkennungen und die Einwilligungsnachrichten im AdMob-Konto eingerichtet sind. Die Datenschutzauswahl kann über die Datenschutzeinstellungen erneut geöffnet werden, sofern Google diesen Einstieg für die App verlangt.
+
+Das Spiel verwendet Vibration nur für optionale haptische Rückmeldungen. Es greift nicht auf Standort, Kontakte, Kamera oder Mikrofon zu. Vor einer Veröffentlichung müssen der endgültige Anbieter, eine öffentliche Datenschutzerklärung und die Angaben im Play-Console-Bereich „Datensicherheit“ ergänzt und mit dem tatsächlich verwendeten SDK-Stand abgeglichen werden.

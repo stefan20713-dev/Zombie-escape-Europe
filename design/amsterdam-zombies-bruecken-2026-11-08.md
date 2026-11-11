@@ -1,0 +1,37 @@
+# Amsterdam: Zombie-Griffe und Brücken – 8. November 2026
+
+## Umsetzung
+- Schleusensprung: Motor II + Nitro I als bestätigte Zielstufe; Hinweis im Spiel ergänzt. Die 32,16-m-Lücke wird weiterhin anhand tatsächlicher Flugbahn bewältigt. Keine Kaufstufen-Sperre und keine erzwungene Landung.
+- Erster Brückensprung: Zielhöhe auf die Reifenunterkante korrigiert. Die sichtbare vordere Radposition wird beim Überqueren der Kante geprüft. Zu niedrige Anflüge werden nicht mehr durch die Federung auf die obere Plattform gezogen; die untere Straße bleibt befahrbar.
+- Statische Rampen und Brückendetails in getrennte, räumlich begrenzte Zeichnungsknoten ausgelagert. Sie werden nicht mehr bei jeder Aktualisierung der dynamischen Strecke neu aufgebaut. Hintergrund-Straßenabtastungen werden pro Bild gemeinsam verwendet.
+- Fünf Zombiearten haben jeweils vier Dach-, zwei Seiten- und zwei Hochkletterposen. Neue transparente Atlanten: `assets/zombie_side_hang_v1.png`, `assets/zombie_climb_transition_v1.png`, mit Mipmaps.
+- Kombi: hintere und vordere seitliche Griffpunkte, Bewegung der Beine im Fahrtwind, Hochziehen mit aufrechter Kopfhaltung, anschließend Vorwärtskriechen. Andere Fahrzeuge behalten ihre vorhandenen Dachpunkte; sie erhalten dieselben Drehungs- und Ablösereaktionen.
+- Starke Drehung und Überkopf-Lage lösen Zombies ab. Ablaufende Griffzeit zeigt zunächst 0,42 Sekunden Abrutschen. Danach fallen sie in Weltkoordinaten mit Fahrzeug- und Drehimpuls; sie verschwinden nicht am Auto. Auf dem Boden erfolgt verzögertes Ausblenden. Auch Schleusenflug und Unfallphasen aktualisieren die Zombies.
+
+## Tatsächlich ausgeführte Prüfungen
+- Komplette 1.800-m-Fahrt mit echten Tastatureingaben, Motor II, Nitro I, Reifen II, Tank III, Panzerung II, Fahrwerk I und Waffe I: Ziel nach 83,48 Simulationssekunden erreicht. Nitro im Anlauf zur Schleuse. Resttank 14,02; Restkarosserie 17,10. Das ist kein Nachweis für jede beliebige Kombination übriger Upgrades oder Vorschäden.
+- Isolierter Schleusen-Anlauf: Motor I/Nitro I erreicht 122,76 km/h und fällt ins Wasser; Motor II ohne Nitro erreicht 107,63 km/h und fällt; Motor II/Nitro I erreicht 150,48 km/h und landet. Der Anlauf startet bei 80 km/h, danach echte Eingaben ohne fortlaufende Geschwindigkeitsvorgabe.
+- Erster Brückensprung mit und ohne Boost: obere beziehungsweise untere Route erreicht, beide fahren über 548 m weiter.
+- Zombie-Verhalten für alle fünf Arten: Seite zu Dach, Vorwärtskriechen, Drehungsablösung, unabhängige Fallposition, sichtbare Freigabe und Bereinigung bestanden. Animationsgalerie und Fahrt mit tatsächlicher Drehsteuerung gerendert und kontrolliert.
+- Weitere bestandene Prüfungen: zombie_latch_test, amsterdam_action_test, amsterdam_lock_bridge_test, upgrade_preview_test, wheel_ground_contact_test, amsterdam_combat_pass_test und amsterdam_preview_branch_test.
+- PC-Messung im isolierten ersten Brückenabschnitt: vor Cache median 29,105 ms, 95. Perzentil 134,346 ms; nach Cache 16,646/17,466 ms. Mit korrigierter Sprunghöhe 16,678/17,468 ms. Lokale Messungen nach Aufwärmphase, kein allgemeiner FPS-Nachweis. Android und echtes Telefon nicht geprüft.
+- Tests verwenden getrennte APPDATA-Verzeichnisse unter `.local_probe`; persönliche Spielstände bleiben erhalten. Vorhandene Sicherung bleibt bestehen.
+
+## Grafikherstellung
+Die beiden Atlanten wurden neu generiert: ein transparentes Raster mit zwei Spalten und fünf Reihen, pro Reihe gewöhnlicher Zombie, roter Läufer, Bauarbeiter, Polizist und Muskelzombie. Alle blicken nach rechts. Seitenatlas: beide Hände am festen oberen Griffpunkt, Oberkörper darunter, zwei unterschiedliche nach hinten ausschlagende Beinposen. Kletteratlas: erst stark gebeugte Arme und hochgezogener Oberkörper, dann Kopf und Brust über dem Griff mit angezogenem Knie; Hände jeweils am rechten Bildrand. Vorgaben: gezeichneter Stil, dunkle Konturen, passende Kleidung und Materialien, vollständige Körper, transparente Abstände, kein Auto, kein Hintergrund und keine Schrift. Gemessene Ausschnitte und Griffpunkte stehen in `scripts/zombie_attachment_art.gd`.
+
+## Start und Grenzen
+Eine bereits laufende Vorschau muss geschlossen und über `Start_Zombie_Escape_Europe_PC_Preview.bat` neu gestartet werden. Nutzerabnahme und Telefonprüfung stehen aus. Die neue Seitenanpassung ist auf den Kombi zugeschnitten; weitere Fahrzeuge benötigen ihre eigenen gemessenen Seitenpunkte. Keine weiteren Städte oder Fahrzeuge wurden angelegt.
+
+## Korrektur nach Nutzerfeedback: Schwingen und Anlauf
+- Den zusätzlichen 135-px-Hügel bei 347–383 m vor der Holzrampe entfernt. Der übrige leichte Straßenverlauf bleibt erhalten. Sichtbare Fahrbahn und Kollision beziehen sich weiterhin auf dieselbe Höhenfunktion.
+- Ganzkörper-Schwingen am Griff entfernt. Seitliche Windbewegung von bis zu 11 px auf höchstens 3,2 px reduziert, vertikale Bewegung auf 0,5 px. Die seitliche Grundpose bleibt stabil, statt zwischen sehr unterschiedlichen Beinsilhouetten zu springen.
+- Beim Hochziehen keine künstliche Streckung des Rumpfes mehr. Vier vollständige Posen (Hängen, zwei Hochziehposen, Dach) werden mit kurzen weichen Übergängen um den Griffpunkt verbunden. Die letzte Dachpose verwendet bereits exakt den danach verwendeten Versatz.
+- Nach dieser Korrektur erneut bestanden: fünf Zombiearten im Griff- und Vorwärtsklettertest, gerenderte Animationsgalerie, reale Tastatureingaben in beiden Brückenabschnitten. Separater Test mit langsamem Serienmotor nutzt die untere Straße; Motor II mit Nitro erreicht die obere Brücke. Beide fahren ohne Hängenbleiben weiter. Der vorherige hügellose Test ohne Nitro kann mit ausreichendem Anlauf ebenfalls oben landen; es gibt weiterhin keine künstliche Nitro-Sperre.
+
+## Tor und Fahrzeugwaffe
+- Nur den Eintrag der einfachen Metall-Torsperre bei 1515 m aus dem Amsterdam-Streckenplan entfernt. Damit entfallen Darstellung und Trefferfläche dieses Objekts. Schleusentor und andere Streckenelemente bleiben erhalten.
+- Montierte Waffe: Schusspause von 0,42 auf 0,12 Sekunden verkürzt, Zombie-Erfassung auf 6 m vor der sichtbaren Fahrzeugfront erweitert. Treffer markieren den tatsächlichen Gegner vor dem Kontakt als getroffen; dadurch gibt es weder anschließendes Klammern noch doppelte Belohnung für dieselbe Figur.
+- Explosive Fässer werden bis 9 m vor der Fahrzeugfront erfasst und beim Schuss sofort an ihrer sichtbaren Position gezündet. Die bisherige Zündverzögerung konnte bei hohem Tempo die Explosion bis ans Auto verschieben. Ohne montierte Waffe bleibt das Zünden durch Rammen erhalten. Explosionen in Fahrzeugnähe verursachen weiterhin Schaden; Kettenreaktionen bleiben räumlich begrenzt.
+- Vergleichsfahrt mit echten Tastatureingaben von 1450 bis über 1625 m: Ohne Waffe 5 Zombie-Kontakte und maximal 2 klammernde Zombies; mit Waffe 5 Abschüsse, 0 Kontakte und 0 Klammerer. Beide Fässer explodieren mit Waffe vor der sichtbaren Fahrzeugfront. Der Test gilt für diesen Abschnitt und diese Ausrüstung, nicht als Zusage, dass sämtliche Zombies überall abgewehrt werden.
+- Neue Prüfung `tests/amsterdam_weapon_clearance_test.gd` bestanden; Explosion und freie Straße bei der früheren Torsperre gerendert und angesehen. Gegenprüfungen `amsterdam_combat_pass_test` und `amsterdam_action_test` bestanden: Kettenreaktionen, einmalige Trefferbelohnung, Schaden, Kombos und Rücksetzen funktionieren. Eigene Test-Spielstände unter `.local_probe`, keine persönlichen Spielstände verändert. Telefonprüfung steht aus.

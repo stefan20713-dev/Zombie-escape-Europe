@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/driving_test.gd" id="1_test"]
+[ext_resource type="Script" path="res://scripts/amsterdam_preview_course.gd" id="2_course"]
+[ext_resource type="PackedScene" path="res://scenes/backdrop.tscn" id="3_backdrop"]
+
+[node name="AmsterdamPreview" type="Node2D"]
+script = ExtResource("1_test")
+
+[node name="Backdrop" parent="." instance=ExtResource("3_backdrop")]
+
+[node name="Course" type="Node2D" parent="."]
+script = ExtResource("2_course")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = false
+zoom = Vector2(1, 1)

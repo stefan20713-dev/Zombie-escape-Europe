@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[admob]
+
+general/ios/enabled=false
+
+[application]
+
+config/name="Zombie Escape Europe"
+config/version="0.5.56"
+run/main_scene="res://scenes/main.tscn"
+config/quit_on_go_back=false
+config/features=PackedStringArray("4.7", "GL Compatibility")
+run/max_fps=60
+boot_splash/bg_color=Color(0.16, 0.2, 0.15, 1)
+boot_splash/image="res://assets/loading_splash_0.4.27.png"
+config/icon="res://assets/app_icon.png"
+
+[autoload]
+
+AdsService="*res://scripts/ads_service.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+
+[physics]
+
+2d/default_gravity=350.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+limits/opengl/max_lights_per_object=4
+environment/defaults/default_clear_color=Color(0.08, 0.12, 0.13, 1)
