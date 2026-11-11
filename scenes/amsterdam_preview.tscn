@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/driving_test.gd" id="1_test"]
-[ext_resource type="Script" path="res://scripts/amsterdam_preview_course.gd" id="2_course"]
+[ext_resource type="Script" path="res://scripts/amsterdam_wave_course.gd" id="2_course"]
 [ext_resource type="PackedScene" path="res://scenes/backdrop.tscn" id="3_backdrop"]
 
 [node name="AmsterdamPreview" type="Node2D"]
